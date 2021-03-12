@@ -6,7 +6,8 @@ const AvaiBookMarker = (props) => {
   const icon = L.icon({
     iconUrl: 'marker-avaibook.svg',
     iconSize: props.size,
-    iconAnchor: [props.size[0] / 2, props.size[1]]
+    iconAnchor: [props.size[0] / 2, props.size[1]],
+    popupAnchor: [0, -(props.size[1])]
   })
 
   return (
