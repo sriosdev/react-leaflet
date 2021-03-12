@@ -1,10 +1,16 @@
 import React from 'react'
+<<<<<<< HEAD
 
 import { MapContainer, TileLayer, FeatureGroup, Circle, Marker } from 'react-leaflet'
 import Leaflet from 'leaflet'
+=======
+import { MapContainer, TileLayer, Popup } from 'react-leaflet'
+>>>>>>> origin/maker-and-popup
 import 'leaflet/dist/leaflet.css'
 import CustomPopup from './CustomPopup.js'
 
+
+import AvaiBookMarker from './AvaiBookMarker'
 
 const MapView = () => {
   const randomCoord = [37.276418, -7.001000]
@@ -21,6 +27,13 @@ const MapView = () => {
         url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
         subdomains={['mt0','mt1','mt2','mt3']}
         attribution='<a href="https://www.google.es/maps/preview">Google Maps</a>'
+<<<<<<< HEAD
+=======
+      />
+      <AvaiBookMarker
+        size={[50, 50]}
+        position={[37.2759242, -7.0016856]}
+>>>>>>> origin/maker-and-popup
       />
       <FeatureGroup>
         <Circle center={randomCoord} radius={200} />
