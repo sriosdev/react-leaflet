@@ -3,8 +3,7 @@ import { MapContainer, TileLayer, FeatureGroup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import CompetitorsArea from './CompetitorsArea'
 
-const MapView = () => {
-  console.log(process.env.REACT_APP_AIRDNA_URL)
+const MapView = ({comptitorsAreaSize}) => {
   return (
     <MapContainer center={{ lat: '37.276418', lng: '-7.001000' }} zoom={13}>
       <TileLayer
@@ -13,7 +12,7 @@ const MapView = () => {
         attribution='<a href="https://www.google.es/maps/preview">Google Maps</a>'
       />
       <FeatureGroup>
-        <CompetitorsArea />
+        <CompetitorsArea area={comptitorsAreaSize} />
       </FeatureGroup>
     </MapContainer>
   )

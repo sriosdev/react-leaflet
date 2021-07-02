@@ -3,13 +3,13 @@ import { Circle, useMapEvents } from 'react-leaflet'
 
 import AvaiBookMarker from './AvaiBookMarker'
 
-const CompetitorsArea = () => {
+const CompetitorsArea = ({area}) => {
   const [position, setPosition] = useState(null);
   const [competitors, setCompetitors] = useState([]);
 
-  const fetchCompetitors = async (position, radius) => {
+  const fetchCompetitors = async (position) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_COMPETITORS_URL}?lat=${position.lat}&lng=${position.lng}&radius=${radius}&access_token=${process.env.REACT_APP_COMPETITORS_TOKEN}&currency=native&limit=10`)
+      const response = await fetch(`${process.env.REACT_APP_COMPETITORS_URL}?lat=${position.lat}&lng=${position.lng}&radius=${area}&access_token=${process.env.REACT_APP_COMPETITORS_TOKEN}&currency=native&limit=10`)
       const competitors = await response.json()
 
       setCompetitors(competitors.properties)
@@ -20,7 +20,7 @@ const CompetitorsArea = () => {
 
   const map = useMapEvents({
     click(e) {
-      fetchCompetitors(e.latlng, 2000)
+      fetchCompetitors(e.latlng)
       setPosition(e.latlng)
       map.flyTo(e.latlng, map.getZoom())
     }
@@ -28,7 +28,7 @@ const CompetitorsArea = () => {
 
   return position === null ? null : (
     <>
-      <Circle center={position} radius={2000} />
+      <Circle center={position} radius={area} />
       { competitors.map((competitor) => {
         return (
           <AvaiBookMarker
